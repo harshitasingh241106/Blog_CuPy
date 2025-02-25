@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Quarto Blog – Quarto Template</title>
+<title>blog – Quarto Template</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +64,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -40,7 +72,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-8e00f2f28a1266a720913de837032221.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-e3acdd9b67e85dd7c39f851874d9197e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-7cfa380d139a4d61a924487b0af32b39.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,69 +100,11 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -166,108 +140,235 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(2)</span></div><div class="category" data-category="TUw=">ML <span class="quarto-category-count">(1)</span></div></div></div>
+    
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Quarto Blog</h1>
-</div>
-
-
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
 
+<section id="cupy---gpu-accelerated-numpy-for-cuda" class="level1">
+<h1>CuPy - GPU Accelerated NumPy for CUDA</h1>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>CuPy is an open-source library that accelerates numerical computations by utilizing GPU processing with CUDA. It is designed to work seamlessly with NumPy, allowing users to run matrix operations and scientific computations much faster than on a CPU. This blog introduces CuPy’s key features, installation, and real-world applications to help you understand how to leverage its power in performance-critical tasks.</p>
+<hr>
+</section>
+<section id="installation-setup" class="level2">
+<h2 class="anchored" data-anchor-id="installation-setup">Installation &amp; Setup</h2>
+<p>To download the compatible version of CuPy on your device, and install it; Open the terminal and enter:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install cupy-cuda12x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To install CuPy using anaconda :</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-c</span> conda-forge cupy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To verify the installation in jupyter notebook, run the following code :</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">import</span> cupy as cp </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">print</span><span class="er">(</span><span class="ex">cp.__version__</span><span class="kw">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If the installation is successful, it will print the CuPy version. Handling installation issues - If CuPy fails to detect your GPU, ensure you have NVIDIA drivers and CUDA Toolkit installed. If using Google Colab/ Jupyter notebook, install CuPy with:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">!pip</span> install cupy-cuda12x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ensure that you have an NVIDIA GPU with CUDA installed. You can check your CUDA version with:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nvcc</span> <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+<section id="key-features-explanation" class="level2">
+<h2 class="anchored" data-anchor-id="key-features-explanation">Key Features &amp; Explanation</h2>
+<section id="numpy-and-scipy-compatibility" class="level3">
+<h3 class="anchored" data-anchor-id="numpy-and-scipy-compatibility">1. NumPy and SciPy Compatibility</h3>
+<p>CuPy is highly compatible with NumPy and SciPy, meaning you can easily transition to GPU acceleration by simply replacing <code>numpy</code> with <code>cupy</code> and <code>scipy</code> with <code>cupyx.scipy</code> in your code.</p>
+</section>
+<section id="gpu-accelerated-with-cuda" class="level3">
+<h3 class="anchored" data-anchor-id="gpu-accelerated-with-cuda">2. GPU Accelerated with CUDA</h3>
+<p>CuPy leverages CUDA to accelerate computations using the GPU. GPUs excel at parallel processing, allowing thousands of operations to be executed simultaneously. This makes CuPy significantly faster, especially for large datasets or complex matrix operations.</p>
+</section>
+<section id="efficient-memory-management" class="level3">
+<h3 class="anchored" data-anchor-id="efficient-memory-management">3. Efficient Memory Management</h3>
+<p>CuPy uses memory pools to manage GPU memory efficiently, reducing memory allocation overhead and minimizing CPU-GPU synchronization delays.</p>
+<ul>
+<li><strong>Device Memory Pool</strong>: Optimizes GPU memory allocation.</li>
+<li><strong>Pinned Memory Pool</strong>: Manages non-swappable CPU memory, improving data transfer efficiency between CPU and GPU.</li>
+</ul>
+</section>
+<section id="custom-cuda-kernels" class="level3">
+<h3 class="anchored" data-anchor-id="custom-cuda-kernels">4. Custom CUDA Kernels</h3>
+<p>CuPy allows you to create custom CUDA kernels with minimal C++ code to enhance performance. The kernels are compiled and cached for reuse, saving time in future executions.</p>
+</section>
+<section id="fast-matrix-operations" class="level3">
+<h3 class="anchored" data-anchor-id="fast-matrix-operations">5. Fast Matrix Operations</h3>
+<p>CuPy performs matrix operations like multiplication, inversion, and eigenvalue decomposition much faster than NumPy. These operations are essential for fields such as scientific computing, machine learning, and numerical simulations.</p>
+<hr>
+</section>
+</section>
+<section id="code-examples" class="level2">
+<h2 class="anchored" data-anchor-id="code-examples">Code Examples</h2>
+<section id="basic-array-operations" class="level3">
+<h3 class="anchored" data-anchor-id="basic-array-operations">1. Basic Array operations</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cupy <span class="im">as</span> cp</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating arrays</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>x_gpu <span class="op">=</span> cp.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>])</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>y_gpu <span class="op">=</span> cp.array([<span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>])</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Element-wise addition</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>z_gpu <span class="op">=</span> x_gpu <span class="op">+</span> y_gpu</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(z_gpu)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://github.com/harshitasingh241106/CuPy/blob/main/Screenshot%202025-02-23%20215428.png" class="img-fluid figure-img"></p>
+<figcaption>Basic Array</figcaption>
+</figure>
+</div>
+</section>
+<section id="comparing-numpy-vs-cupy-performance" class="level3">
+<h3 class="anchored" data-anchor-id="comparing-numpy-vs-cupy-performance">2. Comparing NumPy vs CuPy Performance</h3>
+<p>CuPy is significantly faster for large-scale operations</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cupy <span class="im">as</span> cp</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>size <span class="op">=</span> <span class="dv">10</span><span class="op">**</span><span class="dv">7</span>  <span class="co"># Large array size</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># NumPy (CPU)</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>x_cpu <span class="op">=</span> np.random.rand(size)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>start <span class="op">=</span> time.time()</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>np_result <span class="op">=</span> np.sqrt(x_cpu)  <span class="co"># Compute square root</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>end <span class="op">=</span> time.time()</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"NumPy Time: </span><span class="sc">{</span>end <span class="op">-</span> start<span class="sc">:.5f}</span><span class="ss"> seconds"</span>)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co"># CuPy (GPU)</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>x_gpu <span class="op">=</span> cp.random.rand(size)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>start <span class="op">=</span> time.time()</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>cp_result <span class="op">=</span> cp.sqrt(x_gpu)  <span class="co"># Compute square root</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>cp.cuda.Device(<span class="dv">0</span>).synchronize()  <span class="co"># Ensure GPU computation finishes</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>end <span class="op">=</span> time.time()</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"CuPy Time: </span><span class="sc">{</span>end <span class="op">-</span> start<span class="sc">:.5f}</span><span class="ss"> seconds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://github.com/harshitasingh241106/CuPy/blob/main/Screenshot%202025-02-23%20215428.png" class="img-fluid figure-img"></p>
+<figcaption>Comparision</figcaption>
+</figure>
+</div>
+</section>
+<section id="matrix-multiplication" class="level3">
+<h3 class="anchored" data-anchor-id="matrix-multiplication">3. Matrix Multiplication</h3>
+<p>GPU-accelerated matrix multiplication is much faster than CPU-based NumPy.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cupy <span class="im">as</span> cp</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating random matrices</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> cp.random.rand(<span class="dv">1000</span>, <span class="dv">1000</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> cp.random.rand(<span class="dv">1000</span>, <span class="dv">1000</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># GPU matrix multiplication</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>C <span class="op">=</span> cp.dot(A, B)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(C.shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://github.com/harshitasingh241106/CuPy/blob/main/Screenshot%202025-02-23%20215501.png" class="img-fluid figure-img"></p>
+<figcaption>Basic Array</figcaption>
+</figure>
+</div>
+</section>
+<section id="moving-data-between-numpy-and-cupy" class="level3">
+<h3 class="anchored" data-anchor-id="moving-data-between-numpy-and-cupy">4. Moving Data Between NumPy and CuPy</h3>
+<p>Use cp.asnumpy() to move data to CPU and cp.asarray() to move it to GPU.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cupy <span class="im">as</span> cp</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create CuPy array</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>x_gpu <span class="op">=</span> cp.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>])</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to NumPy (CPU)</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>x_cpu <span class="op">=</span> cp.asnumpy(x_gpu)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert back to CuPy (GPU)</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>x_gpu_again <span class="op">=</span> cp.asarray(x_cpu)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(x_cpu))</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(x_gpu_again))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://github.com/harshitasingh241106/CuPy/blob/main/Screenshot%202025-02-23%20215537.png" class="img-fluid figure-img"></p>
+<figcaption>Basic Array</figcaption>
+</figure>
+</div>
+</section>
+<section id="using-cupy-for-element-wise-custom-kernels-cuda-acceleration" class="level3">
+<h3 class="anchored" data-anchor-id="using-cupy-for-element-wise-custom-kernels-cuda-acceleration">5. Using CuPy for Element-Wise Custom Kernels (CUDA Acceleration)</h3>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cupy <span class="im">as</span> cp</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Custom CUDA kernel</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>ker <span class="op">=</span> cp.ElementwiseKernel(</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'float32 x'</span>,      <span class="co"># Input argument(s)</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'float32 y'</span>,      <span class="co"># Output argument(s)</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'y = x * x;'</span>,     <span class="co"># Operation (square each element)</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'square_kernel'</span>   <span class="co"># Kernel name</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Create CuPy array</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>x_gpu <span class="op">=</span> cp.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>], dtype<span class="op">=</span>cp.float32)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply custom kernel</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>y_gpu <span class="op">=</span> ker(x_gpu)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y_gpu)</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://github.com/harshitasingh241106/CuPy/blob/main/Screenshot%202025-02-23%20215617.png" class="img-fluid figure-img"></p>
+<figcaption>Basic Array</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+</section>
+<section id="use-cases-applications" class="level2">
+<h2 class="anchored" data-anchor-id="use-cases-applications">Use Cases &amp; Applications</h2>
+<section id="accelerating-ai-deep-learning" class="level3">
+<h3 class="anchored" data-anchor-id="accelerating-ai-deep-learning">1. Accelerating AI &amp; Deep Learning</h3>
+<p>CuPy accelerates the training of neural networks by speeding up matrix operations and gradient computations, reducing the time it takes to train models in frameworks like TensorFlow and PyTorch.</p>
+<p><strong>Example:</strong> AI research teams use CuPy to train complex models, such as Convolutional Neural Networks (CNNs), in less time.</p>
+</section>
+<section id="scientific-simulations" class="level3">
+<h3 class="anchored" data-anchor-id="scientific-simulations">2. Scientific Simulations</h3>
+<p>Researchers in fields such as quantum physics and astrophysics can simulate physical systems faster using CuPy, which enables more complex calculations in less time.</p>
+<p><strong>Example:</strong> A molecular biologist uses CuPy to speed up protein interaction simulations, leading to faster discoveries in biological processes.</p>
+</section>
+<section id="big-data-high-performance-computing" class="level3">
+<h3 class="anchored" data-anchor-id="big-data-high-performance-computing">3. Big Data &amp; High-Performance Computing</h3>
+<p>CuPy speeds up big data processing, making real-time analytics and decision-making more efficient.</p>
+<p><strong>Example:</strong> A financial company uses CuPy to analyze stock market data in real time, providing instant insights.</p>
+</section>
+<section id="image-processing-computer-vision" class="level3">
+<h3 class="anchored" data-anchor-id="image-processing-computer-vision">4. Image Processing &amp; Computer Vision</h3>
+<p>CuPy accelerates image and signal processing tasks such as filtering, edge detection, and Fourier transforms.</p>
+<p><strong>Example:</strong> A startup uses CuPy to process MRI scans faster, improving diagnostic speed.</p>
+<hr>
+</section>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>CuPy is an essential tool for leveraging GPU acceleration in numerical computations. Its compatibility with NumPy makes it easy to integrate, and its CUDA-powered speed improvements make it ideal for AI, scientific simulations, and large-scale data processing.</p>
+<p>If you’re working with performance-critical applications, CuPy is a great alternative to CPU-based computations.</p>
+</section>
+<section id="key-takeaways" class="level2">
+<h2 class="anchored" data-anchor-id="key-takeaways">Key Takeaways</h2>
+<p>–&gt; Faster computations with GPU acceleration<br>
+–&gt; Easy integration with NumPy-based projects<br>
+–&gt; Ideal for machine learning, simulations, and data science</p>
+</section>
+<section id="references-further-reading" class="level2">
+<h2 class="anchored" data-anchor-id="references-further-reading">References &amp; Further Reading</h2>
+<ul>
+<li><a href="https://docs.cupy.dev/en/stable/">CuPy Official Docs</a><br>
+</li>
+<li><a href="https://developer.nvidia.com/cuda-toolkit">CUDA Toolkit</a></li>
+</ul>
 
 
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-date-sort="1739491200000" data-listing-file-modified-sort="1740490135323" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="53">
-<div class="thumbnail">
-<p><a href="./posts/welcome.html" class="no-external"></a></p><a href="./posts/welcome.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/welcome.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/welcome.html" class="no-external">Welcome</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/welcome.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/welcome.html" class="no-external">Welcome Post</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/welcome.html" class="no-external">
-<div class="listing-date">
-Feb 14, 2025
-</div>
-<div class="listing-author">
-Nipun Batra
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="TUw=" data-listing-date-sort="1739491200000" data-listing-file-modified-sort="1740490135323" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
-<div class="thumbnail">
-<p><a href="./posts/visualisation.html" class="no-external"></a></p><a href="./posts/visualisation.html" class="no-external">
-<p class="card-img-top"><img src="posts/visualisation_files/figure-html/cell-3-output-1.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/visualisation.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/visualisation.html" class="no-external">Simple Visualisation</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/visualisation.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('TUw='); return false;">
-ML
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/visualisation.html" class="no-external">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-3"><span class="op">%</span>matplotlib inline</span>
-<span id="cb1-4"><span class="op">%</span>config InlineBackend.figure_format <span class="op">=</span> <span class="st">'retina'</span></span></code></pre></div>
-</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/visualisation.html" class="no-external">
-<div class="listing-date">
-Feb 14, 2025
-</div>
-<div class="listing-author">
-Nipun Batra
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</section>
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
