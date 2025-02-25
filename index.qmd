@@ -2,4 +2,55 @@
 title: Quarto Template
 ---
 
-Quarto template Text!
+# 🚀 Welcome to the CuPy Blog
+![CuPy Logo](https://raw.githubusercontent.com/harshitasingh241106/Blog_CuPy/master/Screenshot%202025-02-24%20192808.png)
+
+This blog explores **CuPy**, a powerful GPU-accelerated alternative to **NumPy** for high-performance computing. Learn how to speed up numerical computations using **CUDA**!
+
+---
+## 📌 Featured Posts
+
+### 🔹 [Introduction to CuPy](cupy-blog.md)
+CuPy is an open-source library that accelerates numerical computations using **CUDA**. It provides a seamless transition from **NumPy** to GPU-based operations.
+
+### 🔹 [Installing CuPy on Your System](installation.md)
+A step-by-step guide to installing CuPy, setting up CUDA, and troubleshooting common issues.
+
+### 🔹 [CuPy vs NumPy - Performance Benchmark](performance.md)
+A comparison of CuPy and NumPy execution speeds with code examples.
+
+### 🔹 [Using CuPy with Custom CUDA Kernels](cuda-kernels.md)
+Learn how to write **custom CUDA kernels** for **ultra-fast** numerical computations.
+
+---
+
+## 📷 Screenshots & Examples
+| CuPy vs NumPy | Custom CUDA Kernel |
+|--------------|----------------|
+| ![Performance](https://raw.githubusercontent.com/your-username/repository-name/main/images/performance-test.png) | ![CUDA Kernel](https://raw.githubusercontent.com/your-username/repository-name/main/images/custom-kernel.png) |
+
+---
+
+## 📖 Read More
+- 📗 [CuPy Official Documentation](https://docs.cupy.dev/en/stable/)  
+- 🚀 [NVIDIA CUDA Toolkit](https://developer.nvidia.com/cuda-toolkit)  
+
+---
+
+## 🔗 About the Author
+**Harshita Singh**  
+📍 B.Tech Student @ IIT Gandhinagar  
+💻 Passionate about **Python, GPU Computing, and AI**  
+📧 Contact: [your-email@example.com](mailto:your-email@example.com)  
+
+---
+
+## 🌐 How to Use This Blog?
+1. **Click on any post** to read detailed explanations.  
+2. **Try the code snippets** in Jupyter Notebooks or Python scripts.  
+3. **Follow updates** for more CuPy tutorials and advanced GPU programming.  
+
+---
+
+### **🚀 Visit the Blog:**  
+🔗 **[GitHub Pages URL](https://your-username.github.io/repository-name/)**
