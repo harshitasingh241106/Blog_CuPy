@@ -68,7 +68,7 @@ z_gpu = x_gpu + y_gpu
 
 print(z_gpu)
 ```
-![Basic Array](https://githubusercontent.com/harshitasingh241106/Blog_CuPy/master/Screenshot%202025-02-23%20215320.png)
+![Basic Array](https://raw.githubusercontent.com/harshitasingh241106/Blog_CuPy/master/Screenshot%202025-02-23%20215320.png)
 
 ### 2. Comparing NumPy vs CuPy Performance 
 CuPy is significantly faster for large-scale operations
