@@ -65,9 +65,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Quarto Template",
+    "title": "CuPy",
     "section": "",
-    "text": "Quarto template Text!"
+    "text": "Welcome to the CuPy Blog\n\n\n\nCuPy Logo\n\n\nThis blog explores CuPy, a powerful GPU-accelerated alternative to NumPy for high-performance computing. Learn how to speed up numerical computations using CUDA!"
   },
   {
     "objectID": "posts/visualisation.html",
