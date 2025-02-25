@@ -95,7 +95,7 @@ cp.cuda.Device(0).synchronize()  # Ensure GPU computation finishes
 end = time.time()
 print(f"CuPy Time: {end - start:.5f} seconds")
 ```
-![Comparision](https://raw.github.com/harshitasingh241106/Blog_CuPy/blob/master/Screenshot%202025-02-23%20215428.png)
+![Comparision](https://raw.github.com/harshitasingh241106/Blog_CuPy/master/Screenshot%202025-02-23%20215428.png)
 
 ### 3. Matrix Multiplication
 GPU-accelerated matrix multiplication is much faster than CPU-based NumPy.
