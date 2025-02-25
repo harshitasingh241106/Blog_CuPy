@@ -1,5 +1,89 @@
 [
   {
+    "objectID": "blog.html",
+    "href": "blog.html",
+    "title": "CuPy - GPU Accelerated NumPy for CUDA",
+    "section": "",
+    "text": "CuPy is an open-source library that accelerates numerical computations by utilizing GPU processing with CUDA. It is designed to work seamlessly with NumPy, allowing users to run matrix operations and scientific computations much faster than on a CPU. This blog introduces CuPy’s key features, installation, and real-world applications to help you understand how to leverage its power in performance-critical tasks.\n\n\n\n\nTo download the compatible version of CuPy on your device, and install it; Open the terminal and enter:\npip install cupy-cuda12x\nTo install CuPy using anaconda :\nconda install -c conda-forge cupy\nTo verify the installation in jupyter notebook, run the following code :\nimport cupy as cp \nprint(cp.__version__)\nIf the installation is successful, it will print the CuPy version. Handling installation issues - If CuPy fails to detect your GPU, ensure you have NVIDIA drivers and CUDA Toolkit installed. If using Google Colab/ Jupyter notebook, install CuPy with:\n!pip install cupy-cuda12x\nEnsure that you have an NVIDIA GPU with CUDA installed. You can check your CUDA version with:\nnvcc --version\n\n\n\n\n\n\nCuPy is highly compatible with NumPy and SciPy, meaning you can easily transition to GPU acceleration by simply replacing numpy with cupy and scipy with cupyx.scipy in your code.\n\n\n\nCuPy leverages CUDA to accelerate computations using the GPU. GPUs excel at parallel processing, allowing thousands of operations to be executed simultaneously. This makes CuPy significantly faster, especially for large datasets or complex matrix operations.\n\n\n\nCuPy uses memory pools to manage GPU memory efficiently, reducing memory allocation overhead and minimizing CPU-GPU synchronization delays.\n\nDevice Memory Pool: Optimizes GPU memory allocation.\nPinned Memory Pool: Manages non-swappable CPU memory, improving data transfer efficiency between CPU and GPU.\n\n\n\n\nCuPy allows you to create custom CUDA kernels with minimal C++ code to enhance performance. The kernels are compiled and cached for reuse, saving time in future executions.\n\n\n\nCuPy performs matrix operations like multiplication, inversion, and eigenvalue decomposition much faster than NumPy. These operations are essential for fields such as scientific computing, machine learning, and numerical simulations.\n\n\n\n\n\n\n\nimport cupy as cp\n\n# Creating arrays\nx_gpu = cp.array([1, 2, 3, 4, 5])\ny_gpu = cp.array([5, 4, 3, 2, 1])\n\n# Element-wise addition\nz_gpu = x_gpu + y_gpu\n\nprint(z_gpu)\n\n\n\nBasic Array\n\n\n\n\n\nCuPy is significantly faster for large-scale operations\nimport numpy as np\nimport cupy as cp\nimport time\n\nsize = 10**7  # Large array size\n\n# NumPy (CPU)\nx_cpu = np.random.rand(size)\nstart = time.time()\nnp_result = np.sqrt(x_cpu)  # Compute square root\nend = time.time()\nprint(f\"NumPy Time: {end - start:.5f} seconds\")\n\n# CuPy (GPU)\nx_gpu = cp.random.rand(size)\nstart = time.time()\ncp_result = cp.sqrt(x_gpu)  # Compute square root\ncp.cuda.Device(0).synchronize()  # Ensure GPU computation finishes\nend = time.time()\nprint(f\"CuPy Time: {end - start:.5f} seconds\")\n\n\n\nComparision\n\n\n\n\n\nGPU-accelerated matrix multiplication is much faster than CPU-based NumPy.\nimport cupy as cp\n\n# Creating random matrices\nA = cp.random.rand(1000, 1000)\nB = cp.random.rand(1000, 1000)\n\n# GPU matrix multiplication\nC = cp.dot(A, B)\n\nprint(C.shape)\n\n\n\nBasic Array\n\n\n\n\n\nUse cp.asnumpy() to move data to CPU and cp.asarray() to move it to GPU.\nimport cupy as cp\nimport numpy as np\n\n# Create CuPy array\nx_gpu = cp.array([1, 2, 3, 4, 5])\n\n# Convert to NumPy (CPU)\nx_cpu = cp.asnumpy(x_gpu)\n\n# Convert back to CuPy (GPU)\nx_gpu_again = cp.asarray(x_cpu)\n\nprint(type(x_cpu))\nprint(type(x_gpu_again))\n\n\n\nBasic Array\n\n\n\n\n\nimport cupy as cp\n\n# Custom CUDA kernel\nker = cp.ElementwiseKernel(\n    'float32 x',      # Input argument(s)\n    'float32 y',      # Output argument(s)\n    'y = x * x;',     # Operation (square each element)\n    'square_kernel'   # Kernel name\n)\n\n# Create CuPy array\nx_gpu = cp.array([1, 2, 3, 4, 5], dtype=cp.float32)\n\n# Apply custom kernel\ny_gpu = ker(x_gpu)\n\nprint(y_gpu)\n\n\n\n\nBasic Array\n\n\n\n\n\n\n\n\n\nCuPy accelerates the training of neural networks by speeding up matrix operations and gradient computations, reducing the time it takes to train models in frameworks like TensorFlow and PyTorch.\nExample: AI research teams use CuPy to train complex models, such as Convolutional Neural Networks (CNNs), in less time.\n\n\n\nResearchers in fields such as quantum physics and astrophysics can simulate physical systems faster using CuPy, which enables more complex calculations in less time.\nExample: A molecular biologist uses CuPy to speed up protein interaction simulations, leading to faster discoveries in biological processes.\n\n\n\nCuPy speeds up big data processing, making real-time analytics and decision-making more efficient.\nExample: A financial company uses CuPy to analyze stock market data in real time, providing instant insights.\n\n\n\nCuPy accelerates image and signal processing tasks such as filtering, edge detection, and Fourier transforms.\nExample: A startup uses CuPy to process MRI scans faster, improving diagnostic speed.\n\n\n\n\n\nCuPy is an essential tool for leveraging GPU acceleration in numerical computations. Its compatibility with NumPy makes it easy to integrate, and its CUDA-powered speed improvements make it ideal for AI, scientific simulations, and large-scale data processing.\nIf you’re working with performance-critical applications, CuPy is a great alternative to CPU-based computations.\n\n\n\n–&gt; Faster computations with GPU acceleration\n–&gt; Easy integration with NumPy-based projects\n–&gt; Ideal for machine learning, simulations, and data science\n\n\n\n\nCuPy Official Docs\n\nCUDA Toolkit"
+  },
+  {
+    "objectID": "blog.html#introduction",
+    "href": "blog.html#introduction",
+    "title": "CuPy - GPU Accelerated NumPy for CUDA",
+    "section": "",
+    "text": "CuPy is an open-source library that accelerates numerical computations by utilizing GPU processing with CUDA. It is designed to work seamlessly with NumPy, allowing users to run matrix operations and scientific computations much faster than on a CPU. This blog introduces CuPy’s key features, installation, and real-world applications to help you understand how to leverage its power in performance-critical tasks."
+  },
+  {
+    "objectID": "blog.html#installation-setup",
+    "href": "blog.html#installation-setup",
+    "title": "CuPy - GPU Accelerated NumPy for CUDA",
+    "section": "",
+    "text": "To download the compatible version of CuPy on your device, and install it; Open the terminal and enter:\npip install cupy-cuda12x\nTo install CuPy using anaconda :\nconda install -c conda-forge cupy\nTo verify the installation in jupyter notebook, run the following code :\nimport cupy as cp \nprint(cp.__version__)\nIf the installation is successful, it will print the CuPy version. Handling installation issues - If CuPy fails to detect your GPU, ensure you have NVIDIA drivers and CUDA Toolkit installed. If using Google Colab/ Jupyter notebook, install CuPy with:\n!pip install cupy-cuda12x\nEnsure that you have an NVIDIA GPU with CUDA installed. You can check your CUDA version with:\nnvcc --version"
+  },
+  {
+    "objectID": "blog.html#key-features-explanation",
+    "href": "blog.html#key-features-explanation",
+    "title": "CuPy - GPU Accelerated NumPy for CUDA",
+    "section": "",
+    "text": "CuPy is highly compatible with NumPy and SciPy, meaning you can easily transition to GPU acceleration by simply replacing numpy with cupy and scipy with cupyx.scipy in your code.\n\n\n\nCuPy leverages CUDA to accelerate computations using the GPU. GPUs excel at parallel processing, allowing thousands of operations to be executed simultaneously. This makes CuPy significantly faster, especially for large datasets or complex matrix operations.\n\n\n\nCuPy uses memory pools to manage GPU memory efficiently, reducing memory allocation overhead and minimizing CPU-GPU synchronization delays.\n\nDevice Memory Pool: Optimizes GPU memory allocation.\nPinned Memory Pool: Manages non-swappable CPU memory, improving data transfer efficiency between CPU and GPU.\n\n\n\n\nCuPy allows you to create custom CUDA kernels with minimal C++ code to enhance performance. The kernels are compiled and cached for reuse, saving time in future executions.\n\n\n\nCuPy performs matrix operations like multiplication, inversion, and eigenvalue decomposition much faster than NumPy. These operations are essential for fields such as scientific computing, machine learning, and numerical simulations."
+  },
+  {
+    "objectID": "blog.html#code-examples",
+    "href": "blog.html#code-examples",
+    "title": "CuPy - GPU Accelerated NumPy for CUDA",
+    "section": "",
+    "text": "import cupy as cp\n\n# Creating arrays\nx_gpu = cp.array([1, 2, 3, 4, 5])\ny_gpu = cp.array([5, 4, 3, 2, 1])\n\n# Element-wise addition\nz_gpu = x_gpu + y_gpu\n\nprint(z_gpu)\n\n\n\nBasic Array\n\n\n\n\n\nCuPy is significantly faster for large-scale operations\nimport numpy as np\nimport cupy as cp\nimport time\n\nsize = 10**7  # Large array size\n\n# NumPy (CPU)\nx_cpu = np.random.rand(size)\nstart = time.time()\nnp_result = np.sqrt(x_cpu)  # Compute square root\nend = time.time()\nprint(f\"NumPy Time: {end - start:.5f} seconds\")\n\n# CuPy (GPU)\nx_gpu = cp.random.rand(size)\nstart = time.time()\ncp_result = cp.sqrt(x_gpu)  # Compute square root\ncp.cuda.Device(0).synchronize()  # Ensure GPU computation finishes\nend = time.time()\nprint(f\"CuPy Time: {end - start:.5f} seconds\")\n\n\n\nComparision\n\n\n\n\n\nGPU-accelerated matrix multiplication is much faster than CPU-based NumPy.\nimport cupy as cp\n\n# Creating random matrices\nA = cp.random.rand(1000, 1000)\nB = cp.random.rand(1000, 1000)\n\n# GPU matrix multiplication\nC = cp.dot(A, B)\n\nprint(C.shape)\n\n\n\nBasic Array\n\n\n\n\n\nUse cp.asnumpy() to move data to CPU and cp.asarray() to move it to GPU.\nimport cupy as cp\nimport numpy as np\n\n# Create CuPy array\nx_gpu = cp.array([1, 2, 3, 4, 5])\n\n# Convert to NumPy (CPU)\nx_cpu = cp.asnumpy(x_gpu)\n\n# Convert back to CuPy (GPU)\nx_gpu_again = cp.asarray(x_cpu)\n\nprint(type(x_cpu))\nprint(type(x_gpu_again))\n\n\n\nBasic Array\n\n\n\n\n\nimport cupy as cp\n\n# Custom CUDA kernel\nker = cp.ElementwiseKernel(\n    'float32 x',      # Input argument(s)\n    'float32 y',      # Output argument(s)\n    'y = x * x;',     # Operation (square each element)\n    'square_kernel'   # Kernel name\n)\n\n# Create CuPy array\nx_gpu = cp.array([1, 2, 3, 4, 5], dtype=cp.float32)\n\n# Apply custom kernel\ny_gpu = ker(x_gpu)\n\nprint(y_gpu)\n\n\n\n\nBasic Array"
+  },
+  {
+    "objectID": "blog.html#use-cases-applications",
+    "href": "blog.html#use-cases-applications",
+    "title": "CuPy - GPU Accelerated NumPy for CUDA",
+    "section": "",
+    "text": "CuPy accelerates the training of neural networks by speeding up matrix operations and gradient computations, reducing the time it takes to train models in frameworks like TensorFlow and PyTorch.\nExample: AI research teams use CuPy to train complex models, such as Convolutional Neural Networks (CNNs), in less time.\n\n\n\nResearchers in fields such as quantum physics and astrophysics can simulate physical systems faster using CuPy, which enables more complex calculations in less time.\nExample: A molecular biologist uses CuPy to speed up protein interaction simulations, leading to faster discoveries in biological processes.\n\n\n\nCuPy speeds up big data processing, making real-time analytics and decision-making more efficient.\nExample: A financial company uses CuPy to analyze stock market data in real time, providing instant insights.\n\n\n\nCuPy accelerates image and signal processing tasks such as filtering, edge detection, and Fourier transforms.\nExample: A startup uses CuPy to process MRI scans faster, improving diagnostic speed."
+  },
+  {
+    "objectID": "blog.html#conclusion",
+    "href": "blog.html#conclusion",
+    "title": "CuPy - GPU Accelerated NumPy for CUDA",
+    "section": "",
+    "text": "CuPy is an essential tool for leveraging GPU acceleration in numerical computations. Its compatibility with NumPy makes it easy to integrate, and its CUDA-powered speed improvements make it ideal for AI, scientific simulations, and large-scale data processing.\nIf you’re working with performance-critical applications, CuPy is a great alternative to CPU-based computations."
+  },
+  {
+    "objectID": "blog.html#key-takeaways",
+    "href": "blog.html#key-takeaways",
+    "title": "CuPy - GPU Accelerated NumPy for CUDA",
+    "section": "",
+    "text": "–&gt; Faster computations with GPU acceleration\n–&gt; Easy integration with NumPy-based projects\n–&gt; Ideal for machine learning, simulations, and data science"
+  },
+  {
+    "objectID": "blog.html#references-further-reading",
+    "href": "blog.html#references-further-reading",
+    "title": "CuPy - GPU Accelerated NumPy for CUDA",
+    "section": "",
+    "text": "CuPy Official Docs\n\nCUDA Toolkit"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Quarto Template",
+    "section": "",
+    "text": "Quarto template Text!"
+  },
+  {
+    "objectID": "posts/visualisation.html",
+    "href": "posts/visualisation.html",
+    "title": "Simple Visualisation",
+    "section": "",
+    "text": "import numpy as np\nimport matplotlib.pyplot as plt\n%matplotlib inline\n%config InlineBackend.figure_format = 'retina'\n\n\nx = np.linspace(0, 10, 100)\ny = np.sin(x)\n\nplt.plot(x, y)"
+  },
+  {
+    "objectID": "posts/welcome.html",
+    "href": "posts/welcome.html",
+    "title": "Welcome",
+    "section": "",
+    "text": "Welcome\nHello world, this is my first blog post.\nI can write in markdown\nprint(\"Hello World\")\nI can also write math equations:\n\\[\ny = x^2\n\\]\nI can create lists easily:\n\nOne\nTwo\n\nI can also create numbered lists:\n\nOne\nTwo\n\nOr, create a table:\n\n\n\nName\nAge\n\n\n\n\nAlice\n20\n\n\nBob\n21"
+  },
+  {
     "objectID": "Blog.html",
     "href": "Blog.html",
     "title": "CuPy - GPU Accelerated NumPy for CUDA",
@@ -61,26 +145,5 @@
     "title": "CuPy - GPU Accelerated NumPy for CUDA",
     "section": "",
     "text": "CuPy Official Docs\n\nCUDA Toolkit"
-  },
-  {
-    "objectID": "posts/welcome.html",
-    "href": "posts/welcome.html",
-    "title": "Welcome",
-    "section": "",
-    "text": "Welcome\nHello world, this is my first blog post.\nI can write in markdown\nprint(\"Hello World\")\nI can also write math equations:\n\\[\ny = x^2\n\\]\nI can create lists easily:\n\nOne\nTwo\n\nI can also create numbered lists:\n\nOne\nTwo\n\nOr, create a table:\n\n\n\nName\nAge\n\n\n\n\nAlice\n20\n\n\nBob\n21"
-  },
-  {
-    "objectID": "posts/visualisation.html",
-    "href": "posts/visualisation.html",
-    "title": "Simple Visualisation",
-    "section": "",
-    "text": "import numpy as np\nimport matplotlib.pyplot as plt\n%matplotlib inline\n%config InlineBackend.figure_format = 'retina'\n\n\nx = np.linspace(0, 10, 100)\ny = np.sin(x)\n\nplt.plot(x, y)"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Quarto Template",
-    "section": "",
-    "text": "Quarto template Text!"
   }
 ]
