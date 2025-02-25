@@ -95,7 +95,7 @@ cp.cuda.Device(0).synchronize()  # Ensure GPU computation finishes
 end = time.time()
 print(f"CuPy Time: {end - start:.5f} seconds")
 ```
-![Comparision](https://github.com/harshitasingh241106/Blog_CuPy/blob/master/Screenshot%202025-02-23%20215428.png)
+![Comparision](https://raw.github.com/harshitasingh241106/Blog_CuPy/blob/master/Screenshot%202025-02-23%20215428.png)
 
 ### 3. Matrix Multiplication
 GPU-accelerated matrix multiplication is much faster than CPU-based NumPy.
@@ -111,7 +111,7 @@ C = cp.dot(A, B)
 
 print(C.shape)
 ```
-![Basic Array](https://githubusercontent.com/harshitasingh241106/Blog_CuPy/master/Screenshot%202025-02-23%20215501.png)
+![Basic Array](https://raw.githubusercontent.com/harshitasingh241106/Blog_CuPy/master/Screenshot%202025-02-23%20215501.png)
 
 ### 4. Moving Data Between NumPy and CuPy
 
@@ -133,7 +133,7 @@ print(type(x_cpu))
 print(type(x_gpu_again))
 
 ```
-![Basic Array](https://githubusercontent.com/harshitasingh241106/Blog_CuPy/master/Screenshot%202025-02-23%20215537.png)
+![Basic Array](https://raw.githubusercontent.com/harshitasingh241106/Blog_CuPy/master/Screenshot%202025-02-23%20215537.png)
 
 ### 5. Using CuPy for Element-Wise Custom Kernels (CUDA Acceleration)
 
@@ -158,7 +158,7 @@ print(y_gpu)
 
 
 ```
-![Basic Array](https://githubusercontent.com/harshitasingh241106/Blog_CuPy/master/Screenshot%202025-02-23%20215617.png)
+![Basic Array](https://raw.githubusercontent.com/harshitasingh241106/Blog_CuPy/master/Screenshot%202025-02-23%20215617.png)
 
 ---
 
